@@ -94,8 +94,6 @@ df['hour'] = df['time'].dt.hour
 #Exporting to csv file
 df.to_csv('accidents_cleaned.csv', index=False)
 
-#Exporting to parquet file 
-#from pandas.io.parquet import to_parquet
-#df.to_parquet('accidents_cleaned.parquet', index=False)
-
-#DONT FORGET TO PUSH THIS WORK AND ADD HUSSIEN
+Exporting to parquet file 
+from pandas.io.parquet import to_parquet
+df.to_parquet('accidents_cleaned.parquet', index=False)
