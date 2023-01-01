@@ -10,6 +10,7 @@ import datetime
 from sklearn.preprocessing import LabelEncoder
 from pandas.io.parquet import to_parquet
 import warnings
+
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 
@@ -160,5 +161,9 @@ def ms_1():
     df.to_parquet("accidents_cleaned.parquet", index=False)
 
 
-# Calls the above script
-ms_1()
+def main():
+    ms_1()
+
+
+if __name__ == "__main__":
+    main()
