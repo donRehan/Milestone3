@@ -11,9 +11,11 @@ def main():
     else:
         print("failed to connect")
 
+    #ASK :: Shouldnt the path be /opt/airflow/data/accidents_cleaned_milestone2.csv ??
     df = pd.read_csv("accidents_cleaned_milestone2.csv")
     df.to_sql(name="UK_Accidents_2011", con=engine, if_exists="replace")
 
+    #ASK :: Shouldnt the path be /opt/airflow/data/accidents_cleaned_milestone2.csv ??
     df = pd.read_csv("encodings.csv")
     df.to_sql(name="lookup_table", con=engine, if_exists="replace")
 

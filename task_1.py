@@ -11,10 +11,11 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 
 
 # Creating the function ms_1 for doing milestone 1 tasks
-def ms_1(path="/opt/airflow/data/", filename="2011_Accidents_UK.csv"):
+#MODIFED_PATH && MODIFED READ_FUN
+def ms_1(path="opt/airflow/data/", filename="2011_Accidents_UK.csv"):
     # path = "/opt/airflow/data/"
     # Reading the data
-    df = pd.read_csv(f"{path}/{filename}", encoding="latin-1", low_memory=False)
+    df = pd.read_csv(f"{path}{filename}", encoding="latin-1", low_memory=False)
 
     # Helper functions
 

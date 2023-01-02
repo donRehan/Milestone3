@@ -3,14 +3,17 @@ from sklearn.preprocessing import LabelEncoder
 
 
 def ms_2(
-    path="/opt/airflow/data/",
+        #MODIFIED
+    path="opt/airflow/data/",
     cleaned_file="accidents_cleaned.csv",
     new_dataset="2018_Accidents_UK",
 ):
     accidents_cleaned = pd.read_csv(
-        f"{path}/{cleaned_file}", encoding="latin-1", low_memory=False
+            #MODIFIED
+        f"{path}{cleaned_file}", encoding="latin-1", low_memory=False
     )
-    df_ms2 = pd.read_csv(f"{path}/{new_dataset}", encoding="latin-1", low_memory=False)
+    #MODIFIED
+    df_ms2 = pd.read_csv(f"{path}{new_dataset}", encoding="latin-1", low_memory=False)
 
     df_ms2.dropna(inplace=True)
 

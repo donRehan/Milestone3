@@ -128,9 +128,10 @@ def hours_fig(df_accidents):
 
 
 def start_visualize_server(
-    path="/opt/airflow/data/", filename="accidents_cleaned_milestone2.csv", port=8050
+    path="opt/airflow/data/", filename="accidents_cleaned_milestone2.csv", port=8050
 ):
-    df_accidents = pd.read_csv(f"{path}/{filename}")
+    #MODIFIED
+    df_accidents = pd.read_csv(f"{path}{filename}")
     app = Dash()
     app.layout = html.Div(
         [
