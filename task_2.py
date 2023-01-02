@@ -1,18 +1,16 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import datetime
 from sklearn.preprocessing import LabelEncoder
 
 
-def ms_2():
+def ms_2(
+    path="/opt/airflow/data/",
+    cleaned_file="accidents_cleaned.csv",
+    new_dataset="2018_Accidents_UK",
+):
     accidents_cleaned = pd.read_csv(
-        "./accidents_cleaned.csv", encoding="latin-1", low_memory=False
+        f"{path}/{cleaned_file}", encoding="latin-1", low_memory=False
     )
-    df_ms2 = pd.read_csv(
-        "./2018_Accidents_UK.csv", encoding="latin-1", low_memory=False
-    )
+    df_ms2 = pd.read_csv(f"{path}/{new_dataset}", encoding="latin-1", low_memory=False)
 
     df_ms2.dropna(inplace=True)
 
@@ -120,7 +118,13 @@ def ms_2():
     df_combined["spotlight"] = df_combined["road_type"].apply(
         lambda x: 1 if x == 2 or x == 6 else 0
     )
-    df_combined.to_csv("accidents_cleaned_milestone2.csv", index=False)
+    # df_combined.to_csv("accidents_cleaned_milestone2.csv", index=False)
+    export_csv(df_combined, path, "accidents_cleaned_milestone2.csv")
+
+
+def export_csv(df, path, filename):
+    filename = f"{path}/{filename}"
+    df.to_csv(filename, index=False)
 
 
 def main():

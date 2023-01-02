@@ -3,21 +3,18 @@
 # Importing required files
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 from scipy import stats
-import datetime
 from sklearn.preprocessing import LabelEncoder
-from pandas.io.parquet import to_parquet
 import warnings
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 
 # Creating the function ms_1 for doing milestone 1 tasks
-def ms_1():
+def ms_1(path="/opt/airflow/data/", filename="2011_Accidents_UK.csv"):
+    # path = "/opt/airflow/data/"
     # Reading the data
-    df = pd.read_csv("2011_Accidents_UK.csv", encoding="latin-1", low_memory=False)
+    df = pd.read_csv(f"{path}/{filename}", encoding="latin-1", low_memory=False)
 
     # Helper functions
 
@@ -154,11 +151,24 @@ def ms_1():
     df["hour"] = df["time"].dt.hour
 
     # Exporting to csv file
-    df.to_csv("accidents_cleaned.csv", index=False)
-    encodings.to_csv("encodings.csv", index=False)
+    # df.to_csv("accidents_cleaned.csv", index=False)
+    # encodings.to_csv("encodings.csv", index=False)
+    # # Exporting to parquet file
 
-    # Exporting to parquet file
-    df.to_parquet("accidents_cleaned.parquet", index=False)
+    # df.to_parquet("accidents_cleaned.parquet", index=False)
+    export_csv(df, path, "accidents_cleaned.csv")
+    export_csv(df, path, "encodings.csv")
+    export_parquet(df, path, "accidents_cleaned.parquet")
+
+
+def export_csv(df, path, filename):
+    filename = f"{path}/{filename}"
+    df.to_csv(filename, index=False)
+
+
+def export_parquet(df, path, filename):
+    filename = f"{path}/{filename}"
+    df.to_parquet(filename, index=False)
 
 
 def main():

@@ -6,8 +6,6 @@ from dash import Dash, dcc, html
 import pandas as pd
 import sys
 
-df_accidents = pd.read_csv("accidents_cleaned_milestone2.csv")
-
 
 def road_type_severity(df_accidents):
     # grouped_df = df_accidents.groupby(by=['speed_limit','road_type'], as_index=False).count()#.agg( {"CategorySize": "sum"} )
@@ -129,7 +127,10 @@ def hours_fig(df_accidents):
     return fig
 
 
-def main():
+def start_visualize_server(
+    path="/opt/airflow/data/", filename="accidents_cleaned_milestone2.csv", port=8050
+):
+    df_accidents = pd.read_csv(f"{path}/{filename}")
     app = Dash()
     app.layout = html.Div(
         [
@@ -170,10 +171,13 @@ def main():
         ]
     )
 
-    port = 8050
     if len(sys.argv) > 1:
         port = sys.argv[1]
     app.run_server(debug=False, port=port)
+
+
+def main():
+    start_visualize_server()
 
 
 if __name__ == "__main__":
